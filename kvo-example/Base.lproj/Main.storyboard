@@ -21,7 +21,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="B50-bD-yi6">
                                 <rect key="frame" x="87" y="364" width="240" height="168"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3O-1G-Huu">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Untitled name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3O-1G-Huu">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -54,17 +54,44 @@
                                     <constraint firstAttribute="width" constant="240" id="nWa-JZ-Fps"/>
                                 </constraints>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Nup-eS-2hz">
+                                <rect key="frame" x="87" y="92" width="240" height="58.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="175-vq-oVS">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cEg-D3-xB1">
+                                        <rect key="frame" x="0.0" y="28.5" width="240" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="textField2DidChange:" destination="BYZ-38-t0r" eventType="editingChanged" id="TA2-Dw-DWU"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="u8F-il-U5f"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Nup-eS-2hz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="48" id="H21-eX-WMS"/>
                             <constraint firstItem="B50-bD-yi6" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="LXD-b1-nS3"/>
+                            <constraint firstItem="Nup-eS-2hz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tG0-Aw-8vc"/>
                             <constraint firstItem="B50-bD-yi6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uEi-cg-63m"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="label2" destination="175-vq-oVS" id="eZA-7o-g2d"/>
                         <outlet property="nameLabel" destination="L3O-1G-Huu" id="qTR-40-GLw"/>
                         <outlet property="textField" destination="2el-y4-L9f" id="SFV-sS-67T"/>
+                        <outlet property="textField2" destination="cEg-D3-xB1" id="WTs-KY-2CE"/>
                         <outlet property="textLabel" destination="AMz-TI-XlZ" id="kD2-UE-Ejs"/>
                     </connections>
                 </viewController>

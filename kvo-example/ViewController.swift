@@ -12,18 +12,10 @@ class Person: NSObject {
     @objc dynamic var name = String()
 }
 
-class Animal {
-    
-    var name: String? {
-        didSet {
-            nameObserver?(name)
-        }
-    }
-    
-    var nameObserver: ((_ name: String?) -> Void)?
-}
-
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var label2: UILabel!
+    @IBOutlet weak var textField2: UITextField!
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var textLabel: UILabel!
@@ -31,9 +23,8 @@ class ViewController: UIViewController {
     
     @objc let taylor = Person()
     @objc dynamic var inputText: String?
-    
-    let animal = Animal()
-    
+    @objc dynamic var inputText2: String?
+
     var nameObservation: NSKeyValueObservation?
     var inputTextObservation: NSKeyValueObservation?
     
@@ -44,7 +35,7 @@ class ViewController: UIViewController {
     
     private func setupObserver() {
         
-        nameObservation = observe(\ViewController.taylor.name, options: [.new, .old, .initial, .prior]) { (vc, change) in
+        nameObservation = observe(\ViewController.taylor.name, options: [.new, .old]) { (vc, change) in
             guard let updatedName = change.newValue else { return }
             self.nameLabel.text = updatedName
             print("old value: \(String(describing: change.oldValue)), new value: \(String(describing: change.newValue))")
@@ -55,21 +46,28 @@ class ViewController: UIViewController {
             vc.textLabel.text = updatedInputText
         }
         
-        // Another simple method of observation
+        addObserver(self, forKeyPath: #keyPath(inputText2), options: [.new], context: nil)
         
-        animal.nameObserver = { [weak self] name in
-            self?.nameLabel.text = name
-        }
     }
     
     @IBAction func updateButtonTapped(_ sender: Any) {
-        // taylor.name = "Peter"
-        animal.name = "Kelvin"
+        taylor.name = "Peter"
     }
     
     @IBAction func textFieldEditingChanged(_ sender: Any) {
-        // inputText = textField.text
-        animal.name = textField.text
+        inputText = textField.text
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == #keyPath(inputText2) {
+            if let updatedText = change?[.newKey] as? String {
+                label2.text = updatedText
+            }
+        }
+    }
+    
+    @IBAction func textField2DidChange(_ sender: UITextField) {
+        self.inputText2 = sender.text
     }
     
 }
